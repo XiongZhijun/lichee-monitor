@@ -4,9 +4,7 @@
  */
 package org.upas.lichee.client;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 
 import org.apache.zookeeper.ZooKeeper;
 import org.upas.lichee.client.zookeeper.ZooKeeperFactory;
