@@ -17,7 +17,7 @@ import com.google.gson.Gson;
  * @date Nov 12, 2014
  */
 public class Startup {
-	
+
 	public static void main(String[] args) throws IOException {
 		ZooKeeper zk = ZooKeeperFactory.createZooKeeper();
 		ZooKeeperHelper helper = new ZooKeeperHelper(zk);
@@ -25,8 +25,10 @@ public class Startup {
 	}
 
 	private static void init(ZooKeeperHelper helper) {
-		String hostPath = helper.initPath("/lichee-monitor/hosts/",
+		String hostPath = PathUtils.join(
+				AppProperties.INSTANCE.getZooKeeperBasePath(), "/hosts",
 				AppProperties.INSTANCE.getLocalHostName());
+		helper.initPath(hostPath);
 		String cpuConfigsPath = helper.initPath(hostPath, "cpu/configs");
 		helper.initPath(hostPath, "cpu/datas");
 		String memoryConfigPath = helper.initPath(hostPath, "memory/configs");
