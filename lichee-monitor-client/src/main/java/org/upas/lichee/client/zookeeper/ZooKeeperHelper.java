@@ -12,6 +12,7 @@ import org.apache.zookeeper.ZooDefs.Ids;
 import org.apache.zookeeper.ZooKeeper;
 import org.apache.zookeeper.data.Stat;
 import org.upas.lichee.client.LicheeException;
+import org.upas.lichee.client.PathUtils;
 
 /**
  * @author Xiong Zhijun
@@ -50,13 +51,7 @@ public class ZooKeeperHelper {
 	}
 
 	public String initPath(String parentPath, String subPath) {
-		StringBuilder sb = new StringBuilder(parentPath);
-		if (!parentPath.endsWith("/") && !subPath.startsWith("/")) {
-			sb.append("/");
-		}
-		sb.append(subPath);
-		String path = sb.toString();
-		return initPath(path);
+		return initPath(PathUtils.join(parentPath, subPath));
 	}
 
 	public Iterable<String> iterateChildren(String path) {

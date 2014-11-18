@@ -23,6 +23,8 @@ public class PathUtilsTest {
 		assertEquals("/", PathUtils.join("/", null));
 
 		assertEquals("/abc/cde/abc", PathUtils.join("/", "abc", "cde", "abc"));
+		assertEquals("/abc/bcd/cde/def/abc",
+				PathUtils.join("/abc/bcd", "cde/def", "abc"));
 		assertEquals("/abc/cde/abc",
 				PathUtils.join("/", "abc/", "/cde/", "/abc/"));
 		assertEquals("/abc/cde/abc",
