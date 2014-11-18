@@ -22,10 +22,6 @@ public class Startup {
 		ZooKeeper zk = ZooKeeperFactory.createZooKeeper();
 		ZooKeeperHelper helper = new ZooKeeperHelper(zk);
 		init(helper);
-		for (String path : helper.iterateChildren("/")) {
-			System.out.println(path);
-		}
-
 	}
 
 	private static void init(ZooKeeperHelper helper) {
