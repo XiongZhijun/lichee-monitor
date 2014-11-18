@@ -7,6 +7,7 @@ package org.upas.lichee.client;
 import static org.junit.Assert.*;
 
 import org.junit.Test;
+import org.upas.lichee.client.utils.PathUtils;
 
 /**
  * @author Xiong Zhijun

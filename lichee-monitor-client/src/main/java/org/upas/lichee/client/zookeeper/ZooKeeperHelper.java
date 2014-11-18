@@ -12,7 +12,7 @@ import org.apache.zookeeper.ZooDefs.Ids;
 import org.apache.zookeeper.ZooKeeper;
 import org.apache.zookeeper.data.Stat;
 import org.upas.lichee.client.LicheeException;
-import org.upas.lichee.client.PathUtils;
+import org.upas.lichee.client.utils.PathUtils;
 
 /**
  * @author Xiong Zhijun

@@ -7,6 +7,7 @@ package org.upas.lichee.client;
 import java.io.IOException;
 
 import org.apache.zookeeper.ZooKeeper;
+import org.upas.lichee.client.utils.PathUtils;
 import org.upas.lichee.client.zookeeper.ZooKeeperFactory;
 import org.upas.lichee.client.zookeeper.ZooKeeperHelper;
 
