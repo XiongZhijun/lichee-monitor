@@ -39,6 +39,7 @@ public class ConfigJsonHelper implements JsonDeserializer<Config>,
 				}.getType());
 		Config config = new Config();
 		config.cron = map.get("cron");
+		config.command = map.get("command");
 		config.description = map.get("description");
 		String monitorTypeStr = map.get("monitorType");
 		config.monitorType = StringUtils.isBlank(monitorTypeStr) ? MonitorType.Percent
@@ -58,6 +59,7 @@ public class ConfigJsonHelper implements JsonDeserializer<Config>,
 		}
 		LinkedHashMap<String, String> map = new LinkedHashMap<String, String>();
 		map.put("cron", config.cron);
+		map.put("command", config.command);
 		map.put("description", config.description);
 		map.put("monitorType", config.monitorType.name());
 		map.putAll(config.properties);

@@ -5,13 +5,14 @@
 package org.upas.lichee.client;
 
 import java.io.IOException;
+import java.util.Map.Entry;
 
 import org.apache.zookeeper.ZooKeeper;
+import org.upas.lichee.client.helper.Config;
+import org.upas.lichee.client.helper.ConfigHelper;
 import org.upas.lichee.client.utils.PathUtils;
 import org.upas.lichee.client.zookeeper.ZooKeeperFactory;
 import org.upas.lichee.client.zookeeper.ZooKeeperHelper;
-
-import com.google.gson.Gson;
 
 /**
  * @author Xiong Zhijun
@@ -30,26 +31,12 @@ public class Startup {
 				AppProperties.INSTANCE.getZooKeeperBasePath(), "/hosts",
 				AppProperties.INSTANCE.getLocalHostName());
 		helper.initPath(hostPath);
-		String cpuConfigsPath = helper.initPath(hostPath, "cpu/configs");
-		helper.initPath(hostPath, "cpu/datas");
-		String memoryConfigPath = helper.initPath(hostPath, "memory/configs");
-		helper.initPath(hostPath, "memory/datas");
-
-		helper.setData(cpuConfigsPath, new Configs("scripts/cpu.py"));
-		helper.setData(memoryConfigPath, new Configs("scripts/memory.py"));
-	}
-
-	static class Configs {
-		String cmd;
-
-		public Configs(String cmd) {
-			super();
-			this.cmd = cmd;
-		}
-
-		@Override
-		public String toString() {
-			return new Gson().toJson(this);
+		ConfigHelper configHelper = new ConfigHelper("configs.json");
+		for (Entry<String, Config> entry : configHelper) {
+			String key = entry.getKey();
+			Config config = entry.getValue();
+			helper.initPath(PathUtils.join(hostPath, key, "configs"), config);
+			helper.initPath(PathUtils.join(hostPath, key, "datas"));
 		}
 	}
 

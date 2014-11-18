@@ -20,6 +20,8 @@ public class Config {
 
 	public String description;
 
+	public String command;
+
 	public Map<String, String> properties;
 
 	@Override

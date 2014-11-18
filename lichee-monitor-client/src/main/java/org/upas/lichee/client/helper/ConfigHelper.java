@@ -5,7 +5,9 @@
 package org.upas.lichee.client.helper;
 
 import java.io.InputStreamReader;
+import java.util.Iterator;
 import java.util.Map;
+import java.util.Map.Entry;
 
 import org.apache.commons.io.IOUtils;
 
@@ -17,7 +19,7 @@ import com.google.gson.reflect.TypeToken;
  * @author Xiong Zhijun
  * @date Nov 18, 2014
  */
-public class ConfigHelper {
+public class ConfigHelper implements Iterable<Entry<String, Config>> {
 	private Map<String, Config> configs;
 
 	public ConfigHelper(String path) {
@@ -36,5 +38,10 @@ public class ConfigHelper {
 
 	public Map<String, Config> getConfigs() {
 		return configs;
+	}
+
+	@Override
+	public Iterator<Entry<String, Config>> iterator() {
+		return this.configs.entrySet().iterator();
 	}
 }

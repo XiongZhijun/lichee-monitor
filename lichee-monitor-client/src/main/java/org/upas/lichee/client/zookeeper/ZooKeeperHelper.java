@@ -27,7 +27,7 @@ public class ZooKeeperHelper {
 		this.zk = zk;
 	}
 
-	public String initPath(String path) {
+	public String initPath(String path, Object value) {
 		Stat exists;
 		try {
 			exists = zk.exists(path, false);
@@ -40,18 +40,28 @@ public class ZooKeeperHelper {
 		int index = path.lastIndexOf("/");
 		if (index > 0) {
 			String parentPath = path.substring(0, index);
-			initPath(parentPath);
+			initPath(parentPath, null);
 		}
 		try {
-			return zk.create(path, null, Ids.OPEN_ACL_UNSAFE,
+			byte[] data;
+			if (value == null) {
+				data = null;
+			} else {
+				data = value.toString().getBytes("UTF-8");
+			}
+			return zk.create(path, data, Ids.OPEN_ACL_UNSAFE,
 					CreateMode.PERSISTENT);
 		} catch (Exception e) {
 			throw new LicheeException("create " + path + " failed.", e);
 		}
 	}
 
-	public String initPath(String parentPath, String subPath) {
-		return initPath(PathUtils.join(parentPath, subPath));
+	public String initPath(String parentPath, String subPath, Object data) {
+		return initPath(PathUtils.join(parentPath, subPath), data);
+	}
+	
+	public void initPath(String path) {
+		initPath(path, null);
 	}
 
 	public Iterable<String> iterateChildren(String path) {
@@ -81,5 +91,7 @@ public class ZooKeeperHelper {
 			throw new LicheeException("set data to " + path + " failed", e);
 		}
 	}
+
+
 
 }
