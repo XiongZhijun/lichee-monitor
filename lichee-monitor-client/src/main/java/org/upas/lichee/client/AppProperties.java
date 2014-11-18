@@ -3,6 +3,7 @@ package org.upas.lichee.client;
 import java.io.IOException;
 import java.util.Properties;
 
+import org.apache.commons.lang.StringUtils;
 import org.upas.lichee.client.utils.HostUtils;
 
 public class AppProperties {
@@ -28,6 +29,14 @@ public class AppProperties {
 	public int getZooKeeperSessionTimeout() {
 		return Integer.parseInt(properties
 				.getProperty("zookeeper.session.timeout"));
+	}
+
+	public String getZooKeeperBasePath() {
+		String property = properties.getProperty("zookeeper.base.path");
+		if (StringUtils.isBlank(property)) {
+			return "/lichee-monitor";
+		}
+		return property;
 	}
 
 	public String getLocalHostName() {
