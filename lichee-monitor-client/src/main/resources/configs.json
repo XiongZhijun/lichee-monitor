@@ -1,0 +1,11 @@
+{
+	cpu : {
+		"cron" : "5 * * * * ?",
+		"monitorType" : "Percent"
+	},
+	memory : {
+		"cron" : "35 10 * * * ?",
+		"monitorType" : "Percent_Quantity"
+	}
+	
+}
