@@ -9,6 +9,7 @@ import static org.quartz.JobBuilder.newJob;
 import static org.quartz.TriggerBuilder.newTrigger;
 
 import org.quartz.Job;
+import org.quartz.JobDataMap;
 import org.quartz.JobDetail;
 import org.quartz.Scheduler;
 import org.quartz.SchedulerException;
@@ -40,8 +41,11 @@ public class JobManager {
 		for (MonitorItemConfig config : configIterator) {
 			Class<Job> cls = JobConfigsProperties.INSTANCE
 					.getClass(config.monitorType);
-			JobDetail job = newJob(cls).withIdentity(
-					"job-" + config.monitorItemName, "monitor-group").build();
+			JobDataMap newJobDataMap = new JobDataMap();
+			newJobDataMap.put("config", config);
+			JobDetail job = newJob(cls)
+					.withIdentity("job-" + config.monitorItemName,
+							"monitor-group").setJobData(newJobDataMap).build();
 			Trigger trigger = newTrigger()
 					.withIdentity("trigger" + config.monitorItemName,
 							"monitor-group").startNow()

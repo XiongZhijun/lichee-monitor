@@ -5,10 +5,14 @@
 package org.upas.lichee.client.helper;
 
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
 import org.apache.commons.io.IOUtils;
+import org.apache.commons.lang.StringUtils;
+import org.upas.lichee.client.utils.PathUtils;
+import org.upas.lichee.client.zookeeper.ZooKeeperHelper;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -18,7 +22,7 @@ import com.google.gson.reflect.TypeToken;
  * @date Nov 18, 2014
  */
 public class MonitorItemConfigList implements Iterable<MonitorItemConfig> {
-	private List<MonitorItemConfig> configs;
+	private List<MonitorItemConfig> configs = new ArrayList<MonitorItemConfig>();
 
 	@Override
 	public Iterator<MonitorItemConfig> iterator() {
@@ -30,10 +34,9 @@ public class MonitorItemConfigList implements Iterable<MonitorItemConfig> {
 		return new Gson().toJson(configs);
 	}
 
-	public static MonitorItemConfigList createByClassPathFile(
-			String configFilePath) {
+	public static MonitorItemConfigList createByClassPathFile() {
 		InputStreamReader reader = new InputStreamReader(
-				ClassLoader.getSystemResourceAsStream(configFilePath));
+				ClassLoader.getSystemResourceAsStream("configs.json"));
 		List<MonitorItemConfig> configs;
 		try {
 			configs = new Gson().fromJson(reader,
@@ -44,6 +47,22 @@ public class MonitorItemConfigList implements Iterable<MonitorItemConfig> {
 		}
 		MonitorItemConfigList configList = new MonitorItemConfigList();
 		configList.configs = configs;
+		return configList;
+	}
+
+	public static MonitorItemConfigList getByZooKeeperPath(
+			ZooKeeperHelper helper, String path) {
+		MonitorItemConfigList configList = new MonitorItemConfigList();
+		for (String child : helper.iterateChildren(path)) {
+			String data = helper.getData(PathUtils.join(child, "configs"));
+			if (StringUtils.isBlank(data)) {
+				continue;
+			}
+			MonitorItemConfig config = new Gson().fromJson(data,
+					MonitorItemConfig.class);
+			configList.configs.add(config);
+
+		}
 		return configList;
 	}
 }

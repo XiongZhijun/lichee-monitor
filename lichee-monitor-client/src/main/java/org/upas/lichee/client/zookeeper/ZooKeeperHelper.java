@@ -59,7 +59,7 @@ public class ZooKeeperHelper {
 	public String initPath(String parentPath, String subPath, Object data) {
 		return initPath(PathUtils.join(parentPath, subPath), data);
 	}
-	
+
 	public void initPath(String path) {
 		initPath(path, null);
 	}
@@ -92,6 +92,16 @@ public class ZooKeeperHelper {
 		}
 	}
 
-
+	public String getData(String path) {
+		try {
+			byte[] data = zk.getData(path, true, null);
+			if (data == null) {
+				return null;
+			}
+			return new String(data, "UTF-8");
+		} catch (Exception e) {
+			throw new LicheeException("get data from " + path + " failed.", e);
+		}
+	}
 
 }

@@ -5,7 +5,9 @@
 package org.upas.lichee.client;
 
 import org.apache.commons.lang.ClassUtils;
+import org.apache.commons.lang.StringUtils;
 import org.quartz.Job;
+import org.upas.lichee.client.jobs.DefaultJob;
 
 /**
  * @author Xiong Zhijun
@@ -24,6 +26,9 @@ public class JobConfigsProperties extends PropertiesSupport {
 	@SuppressWarnings("unchecked")
 	public <T extends Job> Class<T> getClass(String type) {
 		String className = getString(type);
+		if (StringUtils.isBlank(className)) {
+			return (Class<T>) DefaultJob.class;
+		}
 		try {
 			return ClassUtils.getClass(className);
 		} catch (ClassNotFoundException e) {

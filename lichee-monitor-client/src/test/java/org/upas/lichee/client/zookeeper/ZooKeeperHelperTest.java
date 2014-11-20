@@ -18,7 +18,7 @@ public class ZooKeeperHelperTest {
 	public void testInitPath() {
 		ZooKeeperHelper helper = new ZooKeeperHelper(
 				ZooKeeperFactory.createZooKeeper());
-		// helper.initPath("/a/b/c/d");
+		helper.initPath("/a/b/c/d");
 		System.out.println(System.getenv());
 		Properties properties = System.getProperties();
 		for (Object key : properties.keySet()) {

@@ -7,6 +7,7 @@ package org.upas.lichee.client;
 import java.io.IOException;
 import java.util.Properties;
 
+import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.math.NumberUtils;
 
 /**
@@ -31,7 +32,7 @@ public abstract class PropertiesSupport {
 
 	public String getString(String key, String defaultValue) {
 		String property = properties.getProperty(key);
-		return property == null ? defaultValue : property;
+		return StringUtils.isBlank(property) ? defaultValue : property;
 	}
 
 	public int getInt(String key) {
