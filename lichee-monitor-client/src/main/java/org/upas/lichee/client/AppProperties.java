@@ -33,4 +33,8 @@ public class AppProperties extends PropertiesSupport {
 		}
 		return hostName;
 	}
+
+	public String getScriptHomeDir() {
+		return getString("scripts.home.dir", "scripts/");
+	}
 }

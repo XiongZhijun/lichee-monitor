@@ -32,7 +32,9 @@ public class Startup {
 		MonitorItemConfigList configList = MonitorItemConfigList
 				.getByZooKeeperPath(helper, hostPath);
 		new JobManager().startJobs(configList);
-		Thread.sleep(100000);
+		while (true) {
+			Thread.sleep(100000);
+		}
 	}
 
 	private static void init(ZooKeeperHelper helper, String hostPath) {
