@@ -14,7 +14,7 @@ public class ConfigHelperTest {
 
 	@Test
 	public void test() {
-		ConfigHelper configHelper = new ConfigHelper("configs.json");
+		MonitorItemConfigList configHelper = new MonitorItemConfigList("configs.json");
 
 		System.out.println(configHelper.getConfigs());
 	}

@@ -1,13 +1,13 @@
-{
-	cpu : {
-		"cron" : "5 * * * * ?",
-		"command" : "cpu.py",
-		"monitorType" : "Percent"
-	},
-	memory : {
-		"cron" : "35 10 * * * ?",
-		"command" : "memory.py",
-		"monitorType" : "Percent_Quantity"
-	}
-	
+[ {
+	"monitorItemName" : "cpu",
+	"cron" : "5 * * * * ?",
+	"command" : "cpu.py",
+	"monitorType" : "cpu"
+}, {
+	"monitorItemName" : "memory",
+	"cron" : "35 10 * * * ?",
+	"command" : "memory.py",
+	"monitorType" : "memory"
 }
+
+]
