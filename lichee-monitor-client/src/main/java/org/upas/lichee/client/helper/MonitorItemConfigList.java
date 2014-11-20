@@ -20,24 +20,30 @@ import com.google.gson.reflect.TypeToken;
 public class MonitorItemConfigList implements Iterable<MonitorItemConfig> {
 	private List<MonitorItemConfig> configs;
 
-	public MonitorItemConfigList(String configFilePath) {
+	@Override
+	public Iterator<MonitorItemConfig> iterator() {
+		return this.configs.iterator();
+	}
+
+	@Override
+	public String toString() {
+		return new Gson().toJson(configs);
+	}
+
+	public static MonitorItemConfigList createByClassPathFile(
+			String configFilePath) {
 		InputStreamReader reader = new InputStreamReader(
 				ClassLoader.getSystemResourceAsStream(configFilePath));
+		List<MonitorItemConfig> configs;
 		try {
-			this.configs = new Gson().fromJson(reader,
+			configs = new Gson().fromJson(reader,
 					new TypeToken<List<MonitorItemConfig>>() {
 					}.getType());
 		} finally {
 			IOUtils.closeQuietly(reader);
 		}
-	}
-
-	public List<MonitorItemConfig> getConfigs() {
-		return configs;
-	}
-
-	@Override
-	public Iterator<MonitorItemConfig> iterator() {
-		return this.configs.iterator();
+		MonitorItemConfigList configList = new MonitorItemConfigList();
+		configList.configs = configs;
+		return configList;
 	}
 }

@@ -30,9 +30,9 @@ public class Startup {
 				AppProperties.INSTANCE.getZooKeeperBasePath(), "/hosts",
 				AppProperties.INSTANCE.getLocalHostName());
 		helper.initPath(hostPath);
-		MonitorItemConfigList configHelper = new MonitorItemConfigList(
-				"configs.json");
-		for (MonitorItemConfig config : configHelper) {
+		MonitorItemConfigList configList = MonitorItemConfigList
+				.createByClassPathFile("configs.json");
+		for (MonitorItemConfig config : configList) {
 			String itemName = config.monitorItemName;
 			helper.initPath(PathUtils.join(hostPath, itemName, "configs"),
 					config);
