@@ -27,11 +27,14 @@ public class Startup {
 		String hostPath = PathUtils.join(
 				AppProperties.INSTANCE.getZooKeeperBasePath(), "/hosts",
 				AppProperties.INSTANCE.getLocalHostName());
+		AgentContext context = new AgentContext();
+		context.setZooKeeperHelper(helper);
+		context.setHostPath(hostPath);
 		init(helper, hostPath);
 
 		MonitorItemConfigList configList = MonitorItemConfigList
 				.getByZooKeeperPath(helper, hostPath);
-		new JobManager().startJobs(configList);
+		new JobManager().startJobs(context, configList);
 		while (true) {
 			Thread.sleep(100000);
 		}

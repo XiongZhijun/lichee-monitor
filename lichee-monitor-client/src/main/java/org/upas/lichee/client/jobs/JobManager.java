@@ -15,6 +15,7 @@ import org.quartz.Scheduler;
 import org.quartz.SchedulerException;
 import org.quartz.Trigger;
 import org.quartz.impl.StdSchedulerFactory;
+import org.upas.lichee.client.AgentContext;
 import org.upas.lichee.client.JobConfigsProperties;
 import org.upas.lichee.client.LicheeException;
 import org.upas.lichee.client.helper.MonitorItemConfig;
@@ -37,12 +38,14 @@ public class JobManager {
 
 	}
 
-	public void startJobs(Iterable<MonitorItemConfig> configIterator) {
+	public void startJobs(AgentContext context,
+			Iterable<MonitorItemConfig> configIterator) {
 		for (MonitorItemConfig config : configIterator) {
 			Class<Job> cls = JobConfigsProperties.INSTANCE
 					.getClass(config.monitorType);
 			JobDataMap newJobDataMap = new JobDataMap();
 			newJobDataMap.put("config", config);
+			newJobDataMap.put("context", context);
 			JobDetail job = newJob(cls)
 					.withIdentity("job-" + config.monitorItemName,
 							"monitor-group").setJobData(newJobDataMap).build();

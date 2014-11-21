@@ -8,6 +8,7 @@ import org.quartz.Job;
 import org.quartz.JobDataMap;
 import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;
+import org.upas.lichee.client.AgentContext;
 import org.upas.lichee.client.helper.MonitorItemConfig;
 
 /**
@@ -21,10 +22,11 @@ public abstract class JobSupport implements Job {
 			throws JobExecutionException {
 		JobDataMap jobDataMap = context.getMergedJobDataMap();
 		MonitorItemConfig config = (MonitorItemConfig) jobDataMap.get("config");
-		execute(context, config);
+		AgentContext agentContext = (AgentContext) jobDataMap.get("context");
+		execute(context, agentContext, config);
 	}
 
 	protected abstract void execute(JobExecutionContext context,
-			MonitorItemConfig config);
+			AgentContext agentContext, MonitorItemConfig config);
 
 }
