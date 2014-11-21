@@ -5,6 +5,7 @@
 package org.upasx.lichee.client.helper;
 
 import org.junit.Test;
+import org.upasx.lichee.model.MonitorItemConfigList;
 
 /**
  * @author Xiong Zhijun

@@ -9,7 +9,7 @@ import org.quartz.JobDataMap;
 import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;
 import org.upasx.lichee.client.AgentContext;
-import org.upasx.lichee.client.helper.MonitorItemConfig;
+import org.upasx.lichee.model.MonitorItemConfig;
 
 /**
  * @author Xiong Zhijun

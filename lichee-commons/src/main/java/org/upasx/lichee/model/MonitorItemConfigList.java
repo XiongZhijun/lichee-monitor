@@ -2,7 +2,7 @@
  *  Copyright@2014 GageIn Inc. All rights reserved.
  *  Email : hust.xzj@gmail.com 
  */
-package org.upasx.lichee.client.helper;
+package org.upasx.lichee.model;
 
 import java.io.InputStreamReader;
 import java.util.ArrayList;

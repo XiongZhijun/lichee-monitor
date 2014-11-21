@@ -18,7 +18,7 @@ import org.quartz.impl.StdSchedulerFactory;
 import org.upasx.lichee.LicheeException;
 import org.upasx.lichee.client.AgentContext;
 import org.upasx.lichee.client.JobConfigsProperties;
-import org.upasx.lichee.client.helper.MonitorItemConfig;
+import org.upasx.lichee.model.MonitorItemConfig;
 
 /**
  * @author Xiong Zhijun

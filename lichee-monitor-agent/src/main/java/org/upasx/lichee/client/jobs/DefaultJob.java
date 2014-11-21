@@ -7,8 +7,8 @@ package org.upasx.lichee.client.jobs;
 import org.quartz.JobExecutionContext;
 import org.upasx.lichee.client.AgentContext;
 import org.upasx.lichee.client.cmd.CommandUtils;
-import org.upasx.lichee.client.helper.MonitorItemConfig;
 import org.upasx.lichee.configs.AppProperties;
+import org.upasx.lichee.model.MonitorItemConfig;
 import org.upasx.lichee.utils.PathUtils;
 import org.upasx.lichee.zookeeper.ZooKeeperHelper;
 
