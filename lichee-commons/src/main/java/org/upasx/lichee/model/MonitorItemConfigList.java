@@ -24,7 +24,6 @@ import com.google.gson.reflect.TypeToken;
 public class MonitorItemConfigList implements Iterable<MonitorItemConfig> {
 	private List<MonitorItemConfig> configs = new ArrayList<MonitorItemConfig>();
 
-	@Override
 	public Iterator<MonitorItemConfig> iterator() {
 		return this.configs.iterator();
 	}
