@@ -11,7 +11,7 @@ import org.apache.zookeeper.CreateMode;
 import org.apache.zookeeper.ZooDefs.Ids;
 import org.apache.zookeeper.ZooKeeper;
 import org.apache.zookeeper.data.Stat;
-import org.upasx.lichee.client.LicheeException;
+import org.upasx.lichee.LicheeException;
 import org.upasx.lichee.utils.PathUtils;
 
 /**

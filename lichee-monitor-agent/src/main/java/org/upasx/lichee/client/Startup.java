@@ -12,6 +12,8 @@ import org.upasx.lichee.client.helper.MonitorItemConfigList;
 import org.upasx.lichee.client.jobs.JobManager;
 import org.upasx.lichee.client.zookeeper.ZooKeeperFactory;
 import org.upasx.lichee.client.zookeeper.ZooKeeperHelper;
+import org.upasx.lichee.configs.AppProperties;
+import org.upasx.lichee.utils.EnvironmentUtils;
 import org.upasx.lichee.utils.PathUtils;
 
 /**
@@ -26,7 +28,7 @@ public class Startup {
 		ZooKeeperHelper helper = new ZooKeeperHelper(zk);
 		String hostPath = PathUtils.join(
 				AppProperties.INSTANCE.getZooKeeperBasePath(), "/hosts",
-				AppProperties.INSTANCE.getLocalHostName());
+				EnvironmentUtils.getLocalHostName());
 		AgentContext context = new AgentContext();
 		context.setZooKeeperHelper(helper);
 		context.setHostPath(hostPath);

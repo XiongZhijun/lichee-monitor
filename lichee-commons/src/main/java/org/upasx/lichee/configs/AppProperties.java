@@ -1,13 +1,11 @@
-package org.upasx.lichee.client;
-
-import org.upasx.lichee.client.utils.HostUtils;
+package org.upasx.lichee.configs;
 
 public class AppProperties extends PropertiesSupport {
 	public static final String APP_PROPERTIES = "app.properties";
 
 	public static final AppProperties INSTANCE = new AppProperties();
 
-	public AppProperties() {
+	private AppProperties() {
 		super(APP_PROPERTIES);
 	}
 
@@ -21,17 +19,6 @@ public class AppProperties extends PropertiesSupport {
 
 	public String getZooKeeperBasePath() {
 		return getString("zookeeper.base.path", "/lichee-monitor");
-	}
-
-	public String getLocalHostName() {
-		String hostName = getString("local.host.name");
-		if (hostName == null || hostName.trim().length() == 0) {
-			hostName = HostUtils.getHostName();
-		}
-		if (hostName == null || hostName.trim().length() == 0) {
-			hostName = HostUtils.getHostAddress();
-		}
-		return hostName;
 	}
 
 	public String getScriptHomeDir() {

@@ -10,7 +10,7 @@ import java.io.IOException;
 import java.io.InputStream;
 
 import org.apache.commons.io.IOUtils;
-import org.upasx.lichee.client.LicheeException;
+import org.upasx.lichee.LicheeException;
 
 /**
  * @author Xiong Zhijun

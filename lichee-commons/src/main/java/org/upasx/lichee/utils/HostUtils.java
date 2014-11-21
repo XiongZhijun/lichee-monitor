@@ -1,9 +1,9 @@
-package org.upasx.lichee.client.utils;
+package org.upasx.lichee.utils;
 
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 
-import org.upasx.lichee.client.LicheeException;
+import org.upasx.lichee.LicheeException;
 
 public class HostUtils {
 	private static String hostName;

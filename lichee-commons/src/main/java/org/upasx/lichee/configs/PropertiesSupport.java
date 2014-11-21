@@ -2,13 +2,14 @@
  *  Copyright@2014 GageIn Inc. All rights reserved.
  *  Email : hust.xzj@gmail.com 
  */
-package org.upasx.lichee.client;
+package org.upasx.lichee.configs;
 
 import java.io.IOException;
 import java.util.Properties;
 
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.math.NumberUtils;
+import org.upasx.lichee.LicheeException;
 
 /**
  * @author Xiong Zhijun

@@ -7,7 +7,9 @@ package org.upasx.lichee.client;
 import org.apache.commons.lang.ClassUtils;
 import org.apache.commons.lang.StringUtils;
 import org.quartz.Job;
+import org.upasx.lichee.LicheeException;
 import org.upasx.lichee.client.jobs.DefaultJob;
+import org.upasx.lichee.configs.PropertiesSupport;
 
 /**
  * @author Xiong Zhijun

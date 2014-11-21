@@ -7,8 +7,8 @@ package org.upasx.lichee.client.zookeeper;
 import java.io.IOException;
 
 import org.apache.zookeeper.ZooKeeper;
-import org.upasx.lichee.client.AppProperties;
-import org.upasx.lichee.client.LicheeException;
+import org.upasx.lichee.LicheeException;
+import org.upasx.lichee.configs.AppProperties;
 
 /**
  * @author Xiong Zhijun
