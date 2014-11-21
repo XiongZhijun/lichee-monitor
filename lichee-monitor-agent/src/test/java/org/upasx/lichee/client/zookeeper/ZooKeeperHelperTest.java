@@ -7,6 +7,8 @@ package org.upasx.lichee.client.zookeeper;
 import java.util.Properties;
 
 import org.junit.Test;
+import org.upasx.lichee.zookeeper.ZooKeeperFactory;
+import org.upasx.lichee.zookeeper.ZooKeeperHelper;
 
 /**
  * @author Xiong Zhijun

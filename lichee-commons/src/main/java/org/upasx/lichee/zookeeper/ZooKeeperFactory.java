@@ -2,7 +2,7 @@
  *  Copyright@2014 GageIn Inc. All rights reserved.
  *  Email : hust.xzj@gmail.com 
  */
-package org.upasx.lichee.client.zookeeper;
+package org.upasx.lichee.zookeeper;
 
 import java.io.IOException;
 

@@ -4,7 +4,7 @@
  */
 package org.upasx.lichee.client;
 
-import org.upasx.lichee.client.zookeeper.ZooKeeperHelper;
+import org.upasx.lichee.zookeeper.ZooKeeperHelper;
 
 /**
  * @author Xiong Zhijun

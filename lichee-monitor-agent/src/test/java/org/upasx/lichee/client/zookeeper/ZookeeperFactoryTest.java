@@ -9,6 +9,7 @@ import java.util.List;
 import org.apache.zookeeper.KeeperException;
 import org.apache.zookeeper.ZooKeeper;
 import org.junit.Test;
+import org.upasx.lichee.zookeeper.ZooKeeperFactory;
 
 /**
  * @author Xiong Zhijun
