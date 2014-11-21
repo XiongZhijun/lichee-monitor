@@ -2,13 +2,13 @@
  *  Copyright@2014 GageIn Inc. All rights reserved.
  *  Email : hust.xzj@gmail.com 
  */
-package org.upasx.lichee.client;
+package org.upasx.lichee.agent;
 
 import org.apache.commons.lang.ClassUtils;
 import org.apache.commons.lang.StringUtils;
 import org.quartz.Job;
 import org.upasx.lichee.LicheeException;
-import org.upasx.lichee.client.jobs.DefaultJob;
+import org.upasx.lichee.agent.jobs.DefaultJob;
 import org.upasx.lichee.configs.PropertiesSupport;
 
 /**

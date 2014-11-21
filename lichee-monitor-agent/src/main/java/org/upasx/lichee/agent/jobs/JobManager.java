@@ -2,7 +2,7 @@
  *  Copyright@2014 GageIn Inc. All rights reserved.
  *  Email : hust.xzj@gmail.com 
  */
-package org.upasx.lichee.client.jobs;
+package org.upasx.lichee.agent.jobs;
 
 import static org.quartz.CronScheduleBuilder.cronSchedule;
 import static org.quartz.JobBuilder.newJob;
@@ -16,8 +16,8 @@ import org.quartz.SchedulerException;
 import org.quartz.Trigger;
 import org.quartz.impl.StdSchedulerFactory;
 import org.upasx.lichee.LicheeException;
-import org.upasx.lichee.client.AgentContext;
-import org.upasx.lichee.client.JobConfigsProperties;
+import org.upasx.lichee.agent.AgentContext;
+import org.upasx.lichee.agent.JobConfigsProperties;
 import org.upasx.lichee.model.MonitorItemConfig;
 
 /**

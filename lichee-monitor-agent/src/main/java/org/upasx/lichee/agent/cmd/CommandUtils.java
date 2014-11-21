@@ -2,7 +2,7 @@
  *  Copyright@2014 GageIn Inc. All rights reserved.
  *  Email : hust.xzj@gmail.com 
  */
-package org.upasx.lichee.client.cmd;
+package org.upasx.lichee.agent.cmd;
 
 import java.io.BufferedInputStream;
 import java.io.ByteArrayOutputStream;

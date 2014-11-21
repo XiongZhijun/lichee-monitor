@@ -2,11 +2,11 @@
  *  Copyright@2014 GageIn Inc. All rights reserved.
  *  Email : hust.xzj@gmail.com 
  */
-package org.upasx.lichee.client.jobs;
+package org.upasx.lichee.agent.jobs;
 
 import org.quartz.JobExecutionContext;
-import org.upasx.lichee.client.AgentContext;
-import org.upasx.lichee.client.cmd.CommandUtils;
+import org.upasx.lichee.agent.AgentContext;
+import org.upasx.lichee.agent.cmd.CommandUtils;
 import org.upasx.lichee.configs.AppProperties;
 import org.upasx.lichee.model.MonitorItemConfig;
 import org.upasx.lichee.utils.PathUtils;

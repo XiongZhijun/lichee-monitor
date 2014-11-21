@@ -2,12 +2,12 @@
  *  Copyright@2014 GageIn Inc. All rights reserved.
  *  Email : hust.xzj@gmail.com 
  */
-package org.upasx.lichee.client;
+package org.upasx.lichee.agent;
 
 import java.io.IOException;
 
 import org.apache.zookeeper.ZooKeeper;
-import org.upasx.lichee.client.jobs.JobManager;
+import org.upasx.lichee.agent.jobs.JobManager;
 import org.upasx.lichee.configs.AppProperties;
 import org.upasx.lichee.model.MonitorItemConfig;
 import org.upasx.lichee.model.MonitorItemConfigList;
