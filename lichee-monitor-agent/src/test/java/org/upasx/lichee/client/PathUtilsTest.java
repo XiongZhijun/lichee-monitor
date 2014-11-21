@@ -7,7 +7,7 @@ package org.upasx.lichee.client;
 import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
-import org.upasx.lichee.client.utils.PathUtils;
+import org.upasx.lichee.utils.PathUtils;
 
 /**
  * @author Xiong Zhijun

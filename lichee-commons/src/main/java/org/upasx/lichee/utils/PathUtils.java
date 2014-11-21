@@ -2,7 +2,7 @@
  *  Copyright@2014 GageIn Inc. All rights reserved.
  *  Email : hust.xzj@gmail.com 
  */
-package org.upasx.lichee.client.utils;
+package org.upasx.lichee.utils;
 
 import org.apache.commons.lang.StringUtils;
 
