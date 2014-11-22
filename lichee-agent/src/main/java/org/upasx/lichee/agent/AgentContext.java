@@ -4,20 +4,20 @@
  */
 package org.upasx.lichee.agent;
 
-import org.upasx.lichee.zookeeper.ZooKeeperHelper;
+import org.upasx.lichee.zookeeper.LicheeZooKeeper;
 
 /**
  * @author Xiong Zhijun
  * @date Nov 21, 2014
  */
 public class AgentContext {
-	private ZooKeeperHelper zooKeeperHelper;
+	private LicheeZooKeeper zooKeeperHelper;
 	private String hostPath;
 
 	/**
 	 * @return the zooKeeperHelper
 	 */
-	public ZooKeeperHelper getZooKeeperHelper() {
+	public LicheeZooKeeper getZooKeeperHelper() {
 		return zooKeeperHelper;
 	}
 
@@ -25,7 +25,7 @@ public class AgentContext {
 	 * @param zooKeeperHelper
 	 *            the zooKeeperHelper to set
 	 */
-	public void setZooKeeperHelper(ZooKeeperHelper zooKeeperHelper) {
+	public void setZooKeeperHelper(LicheeZooKeeper zooKeeperHelper) {
 		this.zooKeeperHelper = zooKeeperHelper;
 	}
 

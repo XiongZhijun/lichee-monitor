@@ -10,7 +10,7 @@ import org.upasx.lichee.agent.cmd.CommandUtils;
 import org.upasx.lichee.configs.AppProperties;
 import org.upasx.lichee.model.MonitorItemConfig;
 import org.upasx.lichee.utils.PathUtils;
-import org.upasx.lichee.zookeeper.ZooKeeperHelper;
+import org.upasx.lichee.zookeeper.LicheeZooKeeper;
 
 /**
  * @author Xiong Zhijun
@@ -28,7 +28,7 @@ public class DefaultJob extends JobSupport {
 		}
 		cmd.append(config.command);
 		String result = CommandUtils.execute(cmd.toString());
-		ZooKeeperHelper zooKeeperHelper = agentContext.getZooKeeperHelper();
+		LicheeZooKeeper zooKeeperHelper = agentContext.getZooKeeperHelper();
 		zooKeeperHelper.setData(PathUtils.join(agentContext.getHostPath(),
 				config.monitorItemName, "datas"), result);
 	}

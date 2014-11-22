@@ -12,7 +12,7 @@ import java.util.List;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang.StringUtils;
 import org.upasx.lichee.utils.PathUtils;
-import org.upasx.lichee.zookeeper.ZooKeeperHelper;
+import org.upasx.lichee.zookeeper.LicheeZooKeeper;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -50,7 +50,7 @@ public class MonitorItemConfigList implements Iterable<MonitorItemConfig> {
 	}
 
 	public static MonitorItemConfigList getByZooKeeperPath(
-			ZooKeeperHelper helper, String path) {
+			LicheeZooKeeper helper, String path) {
 		MonitorItemConfigList configList = new MonitorItemConfigList();
 		for (String child : helper.iterateChildren(path)) {
 			String data = helper.getData(PathUtils.join(child, "configs"));

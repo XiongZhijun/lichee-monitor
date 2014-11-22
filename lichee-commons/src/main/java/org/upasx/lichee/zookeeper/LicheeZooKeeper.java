@@ -18,11 +18,11 @@ import org.upasx.lichee.utils.PathUtils;
  * @author Xiong Zhijun
  * @date Nov 12, 2014
  */
-public class ZooKeeperHelper {
+public class LicheeZooKeeper {
 
 	private ZooKeeper zk;
 
-	public ZooKeeperHelper(ZooKeeper zk) {
+	public LicheeZooKeeper(ZooKeeper zk) {
 		super();
 		this.zk = zk;
 	}

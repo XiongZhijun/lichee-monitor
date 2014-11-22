@@ -14,7 +14,7 @@ import org.upasx.lichee.model.MonitorItemConfigList;
 import org.upasx.lichee.utils.EnvironmentUtils;
 import org.upasx.lichee.utils.PathUtils;
 import org.upasx.lichee.zookeeper.ZooKeeperFactory;
-import org.upasx.lichee.zookeeper.ZooKeeperHelper;
+import org.upasx.lichee.zookeeper.LicheeZooKeeper;
 
 /**
  * @author Xiong Zhijun
@@ -25,7 +25,7 @@ public class Startup {
 	public static void main(String[] args) throws IOException,
 			InterruptedException {
 		ZooKeeper zk = ZooKeeperFactory.createZooKeeper();
-		ZooKeeperHelper helper = new ZooKeeperHelper(zk);
+		LicheeZooKeeper helper = new LicheeZooKeeper(zk);
 		String hostPath = PathUtils.join(
 				AppProperties.INSTANCE.getZooKeeperBasePath(), "/hosts",
 				EnvironmentUtils.getLocalHostName());
@@ -42,7 +42,7 @@ public class Startup {
 		}
 	}
 
-	private static void init(ZooKeeperHelper helper, String hostPath) {
+	private static void init(LicheeZooKeeper helper, String hostPath) {
 		helper.initPath(hostPath);
 		MonitorItemConfigList configList = MonitorItemConfigList
 				.createByClassPathFile();

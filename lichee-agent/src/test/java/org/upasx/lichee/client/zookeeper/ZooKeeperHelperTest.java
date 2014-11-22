@@ -8,7 +8,7 @@ import java.util.Properties;
 
 import org.junit.Test;
 import org.upasx.lichee.zookeeper.ZooKeeperFactory;
-import org.upasx.lichee.zookeeper.ZooKeeperHelper;
+import org.upasx.lichee.zookeeper.LicheeZooKeeper;
 
 /**
  * @author Xiong Zhijun
@@ -18,7 +18,7 @@ public class ZooKeeperHelperTest {
 
 	@Test
 	public void testInitPath() {
-		ZooKeeperHelper helper = new ZooKeeperHelper(
+		LicheeZooKeeper helper = new LicheeZooKeeper(
 				ZooKeeperFactory.createZooKeeper());
 		helper.initPath("/a/b/c/d");
 		System.out.println(System.getenv());
