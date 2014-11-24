@@ -4,36 +4,25 @@
  */
 package org.upasx.lichee.server.zk;
 
-import org.apache.zookeeper.WatchedEvent;
-import org.apache.zookeeper.Watcher;
-import org.apache.zookeeper.Watcher.Event.EventType;
-import org.upasx.lichee.zookeeper.LicheeZooKeeper;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 /**
  * @author Xiong Zhijun
  * @date Nov 24, 2014
  *
  */
+@Component
 public class MonitorItemHanlder extends PathHandlerSupport {
-
-	public MonitorItemHanlder(LicheeZooKeeper licheeZooKeeper,
-			String monitorItem) {
-		super(licheeZooKeeper, monitorItem);
-	}
+	@Autowired
+	private DataWatcherFactory dataWatcherFactory;
 
 	@Override
-	protected void handleChild(final String child) {
+	protected void handleChild(String parent, String child) {
 		if (child.endsWith("/datas")) {
-			final Watcher watcher = new Watcher() {
-				public void process(WatchedEvent event) {
-					if (event.getType() == EventType.NodeDataChanged) {
-						String data = licheeZooKeeper.getData(child, this);
-						System.out.println(data);
-					}
-				}
-
-			};
-			licheeZooKeeper.registWatcher(child, watcher);
+			licheeZooKeeper.registWatcher(child,
+					dataWatcherFactory.getWatcher(child));
 		}
 	}
+
 }

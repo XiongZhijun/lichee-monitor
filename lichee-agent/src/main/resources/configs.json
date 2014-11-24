@@ -1,11 +1,11 @@
 [ {
 	"monitorItemName" : "cpu",
-	"cron" : "0 * * * * ?",
+	"cron" : "5/10 * * * * ?",
 	"command" : "cpu.py",
 	"monitorType" : "cpu"
 }, {
 	"monitorItemName" : "memory",
-	"cron" : "5 * * * * ?",
+	"cron" : "0/10 * * * * ?",
 	"command" : "memory.py",
 	"monitorType" : "memory"
 }

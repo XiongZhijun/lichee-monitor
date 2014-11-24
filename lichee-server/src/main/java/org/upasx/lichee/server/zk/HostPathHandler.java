@@ -4,22 +4,23 @@
  */
 package org.upasx.lichee.server.zk;
 
-import org.upasx.lichee.zookeeper.LicheeZooKeeper;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 /**
  * @author Xiong Zhijun
  * @date Nov 24, 2014
  *
  */
+@Component
 public class HostPathHandler extends PathHandlerSupport {
 
-	public HostPathHandler(LicheeZooKeeper licheeZooKeeper, String host) {
-		super(licheeZooKeeper, host);
-	}
+	@Autowired
+	private MonitorItemHanlder monitorItemHanlder;
 
 	@Override
-	protected void handleChild(String monitorItem) {
-		new MonitorItemHanlder(licheeZooKeeper, monitorItem).handle();
+	protected void handleChild(String parent, String monitorItem) {
+		monitorItemHanlder.handle(monitorItem);
 	}
 
 }

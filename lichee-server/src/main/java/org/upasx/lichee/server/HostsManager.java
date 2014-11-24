@@ -24,13 +24,13 @@ public class HostsManager {
 	private String hostsPath = AppProperties.INSTANCE.getHostsPath();
 	@Autowired
 	private LicheeZooKeeper licheeZooKeeper;
+	@Autowired
+	private HostsPathHandler handler;
 
 	@PostConstruct
 	public void init() {
 		licheeZooKeeper.initPath(hostsPath);
-		HostsPathHandler handler = new HostsPathHandler(licheeZooKeeper,
-				hostsPath);
-		handler.handle();
+		handler.handle(hostsPath);
 	}
 
 }

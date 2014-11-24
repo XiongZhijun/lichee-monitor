@@ -8,5 +8,4 @@
 	<!-- Uncomment and add your base-package here: -->
 	<context:component-scan base-package="org.upasx.lichee.server" />
 
-	<bean class="org.upasx.lichee.server.HostsManager"></bean>
 </beans>
