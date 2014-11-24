@@ -12,6 +12,24 @@ import org.apache.commons.lang.StringUtils;
  */
 public abstract class PathUtils {
 
+	public static String getParent(String path) {
+		if (StringUtils.isBlank(path)) {
+			return StringUtils.EMPTY;
+		}
+		path = path.trim();
+		if (path.endsWith("/")) {
+			path = path.substring(0, path.length() - 1);
+		}
+		int index = path.lastIndexOf("/");
+		if (index < 0) {
+			return StringUtils.EMPTY;
+		} else if (index == 0) {
+			return "/";
+		} else {
+			return path.substring(0, index);
+		}
+	}
+
 	public static String join(String... paths) {
 		StringBuilder sb = new StringBuilder(paths.length * 16);
 		for (String path : paths) {

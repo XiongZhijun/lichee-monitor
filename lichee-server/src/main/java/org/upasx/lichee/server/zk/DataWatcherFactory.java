@@ -7,10 +7,11 @@ package org.upasx.lichee.server.zk;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.apache.zookeeper.WatchedEvent;
 import org.apache.zookeeper.Watcher;
-import org.apache.zookeeper.Watcher.Event.EventType;
+import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.ApplicationContextAware;
 import org.springframework.stereotype.Component;
 import org.upasx.lichee.zookeeper.LicheeZooKeeper;
 
@@ -20,37 +21,28 @@ import org.upasx.lichee.zookeeper.LicheeZooKeeper;
  *
  */
 @Component
-public class DataWatcherFactory {
+public class DataWatcherFactory implements ApplicationContextAware {
+	private ApplicationContext applicationContext;
 	@Autowired
 	private LicheeZooKeeper licheeZooKeeper;
+	
 	private Map<String, Watcher> pathWatcherMap = new HashMap<String, Watcher>();
 
 	public synchronized Watcher getWatcher(String path) {
 		Watcher watcher = pathWatcherMap.get(path);
 		if (watcher == null) {
-			watcher = new DataWatcher(path, licheeZooKeeper);
+			watcher = new DataWatcher(path);
+			applicationContext.getAutowireCapableBeanFactory().autowireBean(
+					watcher);
 			pathWatcherMap.put(path, watcher);
 		}
 		return watcher;
 	}
 
-	class DataWatcher implements Watcher {
-		private String path;
-		private LicheeZooKeeper licheeZooKeeper;
-
-		public DataWatcher(String path, LicheeZooKeeper licheeZooKeeper) {
-			super();
-			this.path = path;
-			this.licheeZooKeeper = licheeZooKeeper;
-		}
-
-		@Override
-		public void process(WatchedEvent event) {
-			if (event.getType() == EventType.NodeDataChanged) {
-				String data = licheeZooKeeper.getData(path, this);
-				System.out.println("get data : " + data);
-			}
-		}
-
+	@Override
+	public void setApplicationContext(ApplicationContext applicationContext)
+			throws BeansException {
+		this.applicationContext = applicationContext;
 	}
+
 }

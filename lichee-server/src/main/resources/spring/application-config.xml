@@ -8,4 +8,13 @@
 	<!-- Uncomment and add your base-package here: -->
 	<context:component-scan base-package="org.upasx.lichee.server" />
 
+	<bean class="org.upasx.lichee.server.datas.DataHandlerManager">
+		<property name="dataHandlerMap">
+			<map>
+				<entry key="cpu">
+					<bean class="org.upasx.lichee.server.datas.CPUHandler"></bean>
+				</entry>
+			</map>
+		</property>
+	</bean>
 </beans>

@@ -31,4 +31,7 @@ public class MonitorItemConfig {
 		return new Gson().toJson(this);
 	}
 
+	public static MonitorItemConfig fromString(String json) {
+		return new Gson().fromJson(json, MonitorItemConfig.class);
+	}
 }
