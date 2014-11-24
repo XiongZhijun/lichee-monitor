@@ -8,6 +8,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.zookeeper.CreateMode;
+import org.apache.zookeeper.WatchedEvent;
+import org.apache.zookeeper.Watcher;
 import org.apache.zookeeper.ZooDefs.Ids;
 import org.apache.zookeeper.ZooKeeper;
 import org.apache.zookeeper.data.Stat;
@@ -25,9 +27,14 @@ public class LicheeZooKeeper {
 	public LicheeZooKeeper(ZooKeeper zk) {
 		super();
 		this.zk = zk;
+		zk.register(new Watcher() {
+			public void process(WatchedEvent event) {
+			}
+
+		});
 	}
 
-	public String initPath(String path, Object value) {
+	public String initPath(String path, Object data) {
 		Stat exists;
 		try {
 			exists = zk.exists(path, false);
@@ -43,13 +50,13 @@ public class LicheeZooKeeper {
 			initPath(parentPath, null);
 		}
 		try {
-			byte[] data;
-			if (value == null) {
-				data = null;
+			byte[] bytes;
+			if (data == null) {
+				bytes = null;
 			} else {
-				data = value.toString().getBytes("UTF-8");
+				bytes = data.toString().getBytes("UTF-8");
 			}
-			return zk.create(path, data, Ids.OPEN_ACL_UNSAFE,
+			return zk.create(path, bytes, Ids.OPEN_ACL_UNSAFE,
 					CreateMode.PERSISTENT);
 		} catch (Exception e) {
 			throw new LicheeException("create " + path + " failed.", e);
@@ -65,9 +72,42 @@ public class LicheeZooKeeper {
 	}
 
 	public Iterable<String> iterateChildren(String path) {
+		return getChildren(path, null);
+	}
+
+	public void setData(String path, Object data) {
+		try {
+			byte[] bytes = data.toString().getBytes("UTF-8");
+			zk.setData(path, bytes, -1);
+		} catch (Exception e) {
+			throw new LicheeException("set data to " + path + " failed", e);
+		}
+	}
+
+	public String getData(String path, Watcher watcher) {
+		try {
+			byte[] data = zk.getData(path, watcher, null);
+			if (data == null) {
+				return null;
+			}
+			return new String(data, "UTF-8");
+		} catch (Exception e) {
+			throw new LicheeException("get data from " + path + " failed.", e);
+		}
+	}
+
+	public void registWatcher(String path, Watcher watcher) {
+		try {
+			zk.exists(path, watcher);
+		} catch (Exception e) {
+			throw new LicheeException("regist watcher failed.", e);
+		}
+	}
+
+	public Iterable<String> getChildren(String path, Watcher watcher) {
 		List<String> children;
 		try {
-			children = zk.getChildren(path, false);
+			children = zk.getChildren(path, watcher);
 		} catch (Exception e) {
 			throw new LicheeException("get children failed", e);
 		}
@@ -81,27 +121,6 @@ public class LicheeZooKeeper {
 			childFullPaths.add(fullPath.toString());
 		}
 		return childFullPaths;
-	}
-
-	public void setData(String path, Object data) {
-		try {
-			byte[] bytes = data.toString().getBytes("UTF-8");
-			zk.setData(path, bytes, -1);
-		} catch (Exception e) {
-			throw new LicheeException("set data to " + path + " failed", e);
-		}
-	}
-
-	public String getData(String path) {
-		try {
-			byte[] data = zk.getData(path, true, null);
-			if (data == null) {
-				return null;
-			}
-			return new String(data, "UTF-8");
-		} catch (Exception e) {
-			throw new LicheeException("get data from " + path + " failed.", e);
-		}
 	}
 
 }

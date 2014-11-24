@@ -53,7 +53,8 @@ public class MonitorItemConfigList implements Iterable<MonitorItemConfig> {
 			LicheeZooKeeper helper, String path) {
 		MonitorItemConfigList configList = new MonitorItemConfigList();
 		for (String child : helper.iterateChildren(path)) {
-			String data = helper.getData(PathUtils.join(child, "configs"));
+			String data = helper
+					.getData(PathUtils.join(child, "configs"), null);
 			if (StringUtils.isBlank(data)) {
 				continue;
 			}

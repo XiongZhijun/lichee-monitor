@@ -26,8 +26,7 @@ public class Startup {
 			InterruptedException {
 		ZooKeeper zk = ZooKeeperFactory.createZooKeeper();
 		LicheeZooKeeper helper = new LicheeZooKeeper(zk);
-		String hostPath = PathUtils.join(
-				AppProperties.INSTANCE.getZooKeeperBasePath(), "/hosts",
+		String hostPath = PathUtils.join(AppProperties.INSTANCE.getHostsPath(),
 				EnvironmentUtils.getLocalHostName());
 		AgentContext context = new AgentContext();
 		context.setZooKeeperHelper(helper);

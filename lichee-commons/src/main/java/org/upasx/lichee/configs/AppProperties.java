@@ -1,5 +1,7 @@
 package org.upasx.lichee.configs;
 
+import org.upasx.lichee.utils.PathUtils;
+
 public class AppProperties extends PropertiesSupport {
 	public static final String APP_PROPERTIES = "app.properties";
 
@@ -23,5 +25,9 @@ public class AppProperties extends PropertiesSupport {
 
 	public String getScriptHomeDir() {
 		return getString("scripts.home.dir", "scripts/");
+	}
+
+	public String getHostsPath() {
+		return PathUtils.join(getZooKeeperBasePath(), "/hosts");
 	}
 }
