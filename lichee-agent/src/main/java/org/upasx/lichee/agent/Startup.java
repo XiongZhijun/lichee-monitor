@@ -6,15 +6,14 @@ package org.upasx.lichee.agent;
 
 import java.io.IOException;
 
-import org.apache.zookeeper.ZooKeeper;
 import org.upasx.lichee.agent.jobs.JobManager;
 import org.upasx.lichee.configs.AppProperties;
 import org.upasx.lichee.model.MonitorItemConfig;
 import org.upasx.lichee.model.MonitorItemConfigList;
 import org.upasx.lichee.utils.EnvironmentUtils;
 import org.upasx.lichee.utils.PathUtils;
-import org.upasx.lichee.zookeeper.ZooKeeperFactory;
 import org.upasx.lichee.zookeeper.LicheeZooKeeper;
+import org.upasx.lichee.zookeeper.LicheeZooKeeperFactory;
 
 /**
  * @author Xiong Zhijun
@@ -24,17 +23,16 @@ public class Startup {
 
 	public static void main(String[] args) throws IOException,
 			InterruptedException {
-		ZooKeeper zk = ZooKeeperFactory.createZooKeeper();
-		LicheeZooKeeper helper = new LicheeZooKeeper(zk);
+		LicheeZooKeeper zk = LicheeZooKeeperFactory.createZooKeeper();
 		String hostPath = PathUtils.join(AppProperties.INSTANCE.getHostsPath(),
 				EnvironmentUtils.getLocalHostName());
 		AgentContext context = new AgentContext();
-		context.setZooKeeperHelper(helper);
+		context.setZooKeeperHelper(zk);
 		context.setHostPath(hostPath);
-		init(helper, hostPath);
+		init(zk, hostPath);
 
 		MonitorItemConfigList configList = MonitorItemConfigList
-				.getByZooKeeperPath(helper, hostPath);
+				.getByZooKeeperPath(zk, hostPath);
 		new JobManager().startJobs(context, configList);
 		while (true) {
 			Thread.sleep(100000);

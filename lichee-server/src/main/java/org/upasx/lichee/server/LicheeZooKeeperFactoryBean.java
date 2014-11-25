@@ -7,7 +7,7 @@ package org.upasx.lichee.server;
 import org.springframework.beans.factory.FactoryBean;
 import org.springframework.stereotype.Component;
 import org.upasx.lichee.zookeeper.LicheeZooKeeper;
-import org.upasx.lichee.zookeeper.ZooKeeperFactory;
+import org.upasx.lichee.zookeeper.LicheeZooKeeperFactory;
 
 /**
  * @author Xiong Zhijun
@@ -19,7 +19,7 @@ public class LicheeZooKeeperFactoryBean implements FactoryBean<LicheeZooKeeper> 
 
 	@Override
 	public LicheeZooKeeper getObject() throws Exception {
-		return new LicheeZooKeeper(ZooKeeperFactory.createZooKeeper());
+		return LicheeZooKeeperFactory.createZooKeeper();
 	}
 
 	@Override

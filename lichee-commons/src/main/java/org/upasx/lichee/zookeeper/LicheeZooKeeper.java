@@ -4,11 +4,11 @@
  */
 package org.upasx.lichee.zookeeper;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.zookeeper.CreateMode;
-import org.apache.zookeeper.WatchedEvent;
 import org.apache.zookeeper.Watcher;
 import org.apache.zookeeper.ZooDefs.Ids;
 import org.apache.zookeeper.ZooKeeper;
@@ -24,14 +24,13 @@ public class LicheeZooKeeper {
 
 	private ZooKeeper zk;
 
-	public LicheeZooKeeper(ZooKeeper zk) {
-		super();
-		this.zk = zk;
-		zk.register(new Watcher() {
-			public void process(WatchedEvent event) {
-			}
-
-		});
+	public LicheeZooKeeper(String connectString, int sessionTimeout) {
+		try {
+			this.zk = new ZooKeeper(connectString, sessionTimeout,
+					new EmptyWatcher());
+		} catch (IOException e) {
+			throw new LicheeException("Create ZooKeeper failed", e);
+		}
 	}
 
 	public String initPath(String path, Object data) {

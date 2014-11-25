@@ -4,12 +4,10 @@
  */
 package org.upasx.lichee.client.zookeeper;
 
-import java.util.List;
-
 import org.apache.zookeeper.KeeperException;
-import org.apache.zookeeper.ZooKeeper;
 import org.junit.Test;
-import org.upasx.lichee.zookeeper.ZooKeeperFactory;
+import org.upasx.lichee.zookeeper.LicheeZooKeeper;
+import org.upasx.lichee.zookeeper.LicheeZooKeeperFactory;
 
 /**
  * @author Xiong Zhijun
@@ -20,8 +18,8 @@ public class ZookeeperFactoryTest {
 	@Test
 	public void testCreateZookeeper() throws KeeperException,
 			InterruptedException {
-		ZooKeeper zk = ZooKeeperFactory.createZooKeeper();
-		List<String> children = zk.getChildren("/", false);
+		LicheeZooKeeper zk = LicheeZooKeeperFactory.createZooKeeper();
+		Iterable<String> children = zk.getChildren("/", null);
 		System.out.println(children);
 	}
 
