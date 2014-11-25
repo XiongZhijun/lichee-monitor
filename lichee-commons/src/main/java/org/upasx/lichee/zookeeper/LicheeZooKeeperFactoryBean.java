@@ -2,12 +2,10 @@
  *  Copyright@2014 GageIn Inc. All rights reserved.
  *  Email : hust.xzj@gmail.com 
  */
-package org.upasx.lichee.server;
+package org.upasx.lichee.zookeeper;
 
 import org.springframework.beans.factory.FactoryBean;
 import org.springframework.stereotype.Component;
-import org.upasx.lichee.zookeeper.LicheeZooKeeper;
-import org.upasx.lichee.zookeeper.LicheeZooKeeperFactory;
 
 /**
  * @author Xiong Zhijun
