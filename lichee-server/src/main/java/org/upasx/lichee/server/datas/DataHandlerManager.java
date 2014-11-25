@@ -18,7 +18,7 @@ public class DataHandlerManager {
 	private Map<String, DataHandler> dataHandlerMap = new HashMap<String, DataHandler>();
 
 	public DataHandler getDataHandler(MonitorItemConfig config) {
-		DataHandler dataHandler = dataHandlerMap.get(config.monitorItemName);
+		DataHandler dataHandler = dataHandlerMap.get(config.monitorType);
 		if (dataHandler == null) {
 			return DataHandler.DEFAULT_HANDLER;
 		}
