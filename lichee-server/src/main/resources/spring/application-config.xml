@@ -7,8 +7,7 @@
 
 	<!-- Uncomment and add your base-package here: -->
 	<context:component-scan base-package="org.upasx.lichee" />
-	<context:component-scan base-package="org.upasx.lichee.server" />
-
+	<context:property-placeholder location="classpath:application.properties"/>
 	<bean class="org.upasx.lichee.server.datas.DataHandlerManager">
 		<property name="dataHandlerMap">
 			<map>
