@@ -4,9 +4,10 @@
  */
 package org.upasx.lichee.server.datas;
 
-import java.util.HashMap;
 import java.util.Map;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.upasx.lichee.model.MonitorItemConfig;
 
 /**
@@ -14,8 +15,10 @@ import org.upasx.lichee.model.MonitorItemConfig;
  * @date Nov 24, 2014
  *
  */
+@Component
 public class DataHandlerManager {
-	private Map<String, DataHandler> dataHandlerMap = new HashMap<String, DataHandler>();
+	@Autowired
+	private Map<String, DataHandler> dataHandlerMap;
 
 	public DataHandler getDataHandler(MonitorItemConfig config) {
 		DataHandler dataHandler = dataHandlerMap.get(config.monitorType);

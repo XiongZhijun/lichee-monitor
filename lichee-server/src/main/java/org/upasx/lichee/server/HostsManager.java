@@ -7,9 +7,9 @@ package org.upasx.lichee.server;
 import javax.annotation.PostConstruct;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
-import org.upasx.lichee.configs.AppProperties;
 import org.upasx.lichee.server.zk.HostsPathHandler;
 import org.upasx.lichee.zookeeper.LicheeZooKeeper;
 
@@ -21,7 +21,9 @@ import org.upasx.lichee.zookeeper.LicheeZooKeeper;
 @Component
 @Lazy(false)
 public class HostsManager {
-	private String hostsPath = AppProperties.INSTANCE.getHostsPath();
+	@Autowired
+	@Qualifier("hosts.path")
+	private String hostsPath;
 	@Autowired
 	private LicheeZooKeeper licheeZooKeeper;
 	@Autowired

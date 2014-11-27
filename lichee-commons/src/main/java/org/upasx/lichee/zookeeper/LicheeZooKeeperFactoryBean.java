@@ -8,7 +8,6 @@ import org.springframework.beans.factory.FactoryBean;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
-import org.upasx.lichee.configs.AppProperties;
 
 /**
  * @author Xiong Zhijun
@@ -19,11 +18,9 @@ import org.upasx.lichee.configs.AppProperties;
 @Component
 public class LicheeZooKeeperFactoryBean implements FactoryBean<LicheeZooKeeper> {
 	@Value("${zookeeper.servers}")
-	private String zooKeeperServers = AppProperties.INSTANCE
-			.getZooKeeperServers();
+	private String zooKeeperServers;
 	@Value("${zookeeper.session.timeout}")
-	private int zooKeeperSessionTimeout = AppProperties.INSTANCE
-			.getZooKeeperSessionTimeout();
+	private int zooKeeperSessionTimeout;
 
 	@Override
 	public LicheeZooKeeper getObject() throws Exception {

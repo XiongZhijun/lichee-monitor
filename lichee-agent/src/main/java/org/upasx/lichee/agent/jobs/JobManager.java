@@ -15,6 +15,7 @@ import org.quartz.Scheduler;
 import org.quartz.SchedulerException;
 import org.quartz.Trigger;
 import org.quartz.impl.StdSchedulerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.upasx.lichee.LicheeException;
 import org.upasx.lichee.agent.AgentContext;
@@ -29,6 +30,9 @@ import org.upasx.lichee.model.MonitorItemConfig;
 public class JobManager {
 
 	private Scheduler scheduler;
+
+	@Value("${scripts.home.dir}")
+	private String scriptHomeDir;
 
 	public JobManager() {
 		try {
@@ -48,6 +52,7 @@ public class JobManager {
 			JobDataMap newJobDataMap = new JobDataMap();
 			newJobDataMap.put("config", config);
 			newJobDataMap.put("context", context);
+			newJobDataMap.put("script.home.dir", scriptHomeDir);
 			JobDetail job = newJob(cls)
 					.withIdentity("job-" + config.monitorItemName,
 							"monitor-group").setJobData(newJobDataMap).build();

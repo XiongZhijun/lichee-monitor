@@ -4,6 +4,7 @@
  */
 package org.upasx.lichee.server.datas;
 
+import org.springframework.stereotype.Component;
 import org.upasx.lichee.model.MonitorItemConfig;
 import org.upasx.lichee.server.datas.model.CpuData;
 
@@ -14,6 +15,7 @@ import com.google.gson.Gson;
  * @date Nov 24, 2014
  *
  */
+@Component("cpu")
 public class CPUHandler implements DataHandler {
 
 	@Override

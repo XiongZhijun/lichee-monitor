@@ -23,10 +23,12 @@ public abstract class JobSupport implements Job {
 		JobDataMap jobDataMap = context.getMergedJobDataMap();
 		MonitorItemConfig config = (MonitorItemConfig) jobDataMap.get("config");
 		AgentContext agentContext = (AgentContext) jobDataMap.get("context");
-		execute(context, agentContext, config);
+		String scriptHomeDir = (String) jobDataMap.get("script.home.dir");
+		execute(context, agentContext, config, scriptHomeDir);
 	}
 
 	protected abstract void execute(JobExecutionContext context,
-			AgentContext agentContext, MonitorItemConfig config);
+			AgentContext agentContext, MonitorItemConfig config,
+			String scriptHomeDir);
 
 }
