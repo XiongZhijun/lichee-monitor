@@ -15,6 +15,7 @@ import org.quartz.Scheduler;
 import org.quartz.SchedulerException;
 import org.quartz.Trigger;
 import org.quartz.impl.StdSchedulerFactory;
+import org.springframework.stereotype.Component;
 import org.upasx.lichee.LicheeException;
 import org.upasx.lichee.agent.AgentContext;
 import org.upasx.lichee.agent.JobConfigsProperties;
@@ -24,6 +25,7 @@ import org.upasx.lichee.model.MonitorItemConfig;
  * @author Xiong Zhijun
  * @date Nov 20, 2014
  */
+@Component
 public class JobManager {
 
 	private Scheduler scheduler;

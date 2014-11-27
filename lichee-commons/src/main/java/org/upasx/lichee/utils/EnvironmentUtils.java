@@ -13,13 +13,7 @@ import org.apache.commons.lang.StringUtils;
 public class EnvironmentUtils {
 
 	public static String getLocalHostName() {
-		String hostName = System.getenv("local.host.name");
-		if (StringUtils.isBlank(hostName)) {
-			hostName = System.getProperty("local.host.name");
-		}
-		if (StringUtils.isBlank(hostName)) {
-			hostName = HostUtils.getHostName();
-		}
+		String hostName = HostUtils.getHostName();
 		if (StringUtils.isBlank(hostName)) {
 			hostName = HostUtils.getHostAddress();
 		}
