@@ -1,12 +1,23 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<artifactId>lichee-monitor-client</artifactId>
+	<artifactId>lichee-monitor-agent</artifactId>
+	<packaging>jar</packaging>
+
 	<parent>
 		<groupId>org.upasx.lichee</groupId>
 		<artifactId>lichee-parent</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
+	<properties>
+
+		<!-- Web -->
+		<jsp.version>2.2</jsp.version>
+		<jstl.version>1.2</jstl.version>
+		<servlet.version>2.5</servlet.version>
+		<start-class>org.upasx.lichee.agent.AgentApplication</start-class>
+
+	</properties>
 	<dependencies>
 		<dependency>
 			<groupId>org.upasx.lichee</groupId>
