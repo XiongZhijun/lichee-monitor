@@ -8,6 +8,11 @@
 	"cron" : "0/10 * * * * ?",
 	"command" : "memory.py",
 	"monitorType" : "memory"
+}, {
+	"monitorItemName" : "disk",
+	"cron" : "0/10 * * * * ?",
+	"command" : "disk.py",
+	"monitorType" : "disk"
 }
 
 ]
