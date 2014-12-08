@@ -1,16 +1,21 @@
 package org.upasx.lichee.event;
 
+import java.util.Map;
+
 /**
  * 
- * @author Rick Liu 2014Äê11ÔÂ30ÈÕ
+ * @author Rick Liu 2014ï¿½ï¿½11ï¿½ï¿½30ï¿½ï¿½
  *
  */
 public interface IEvent {
 
 	public static final String EVENT_CPU_ALARM = "cpu_alarm";
 	public static final String EVENT_MEMORY_ALARM = "memory_alarm";
-	
-	public Object getSource();
+	public static final String EVENT_DISK_ALARM = "disk_alarm";
 	
 	public String getEventCode();
+	
+	public Map<String, String> getParameters();
+	
+	public void addParam(String key, String value);
 }
