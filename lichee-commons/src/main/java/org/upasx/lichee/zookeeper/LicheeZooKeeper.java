@@ -103,7 +103,7 @@ public class LicheeZooKeeper {
 		}
 	}
 
-	public Iterable<String> getChildren(String path, Watcher watcher) {
+	public List<String> getChildren(String path, Watcher watcher) {
 		List<String> children;
 		try {
 			children = zk.getChildren(path, watcher);
