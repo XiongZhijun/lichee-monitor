@@ -2,7 +2,15 @@
 	"monitorItemName" : "cpu",
 	"cron" : "5/10 * * * * ?",
 	"command" : "cpu.py",
-	"monitorType" : "cpu"
+	"monitorType" : "cpu",
+	"properties" : {
+		"idle" : [
+			{
+				"name" : "min",
+				"value" : "90"
+			}
+		]
+	}
 }, {
 	"monitorItemName" : "memory",
 	"cron" : "0/10 * * * * ?",

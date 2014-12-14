@@ -1,34 +1,53 @@
 package org.upasx.lichee.server.event;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import javax.annotation.PostConstruct;
+
+import org.springframework.stereotype.Component;
 import org.upasx.lichee.event.IEvent;
 import org.upasx.lichee.event.IEventListener;
-import org.upasx.lichee.event.IEventSource;
+import org.upasx.lichee.server.event.listener.CPUAlarmListener;
+import org.upasx.lichee.server.event.listener.MemoryAlarmListener;
 
 /**
  * 
  * @author Rick Liu 2014年11月30日
  *
  */
+@Component("event.manager")
 public class EventManager {
-
-	public static EventManager INSTANCE = new EventManager();
 	
-	private EventManager() {}
+	private Map<String, List<IEventListener>> listenerMap = new HashMap<String, List<IEventListener>>();
 	
-	public static void registerListener(IEventSource source, IEventListener listener) {
-		source.addListener(listener);
+	@PostConstruct
+	public void initListeners() {
+		List<IEventListener> cpuListeners = new ArrayList<IEventListener>();
+		cpuListeners.add(new CPUAlarmListener());
+		listenerMap.put(IEvent.EVENT_CPU_ALARM, cpuListeners);
+		
+		List<IEventListener> memoryListeners = new ArrayList<IEventListener>();
+		memoryListeners.add(new MemoryAlarmListener());
+		listenerMap.put(IEvent.EVENT_MEMORY_ALARM, memoryListeners);
 	}
 	
-	public static void notifyListener(IEventListener listener, IEvent event) {
-		listener.handleEvent(event);
+	public void registerListener(String eventCode, IEventListener listener) {
+		List<IEventListener> listeners = this.listenerMap.get(eventCode);
+		if (listeners == null) {
+			listeners = new ArrayList<IEventListener>();
+		}
+		listeners.add(listener);
 	}
 	
-	public static void notifyListeners(List<IEventListener> listeners, IEvent event) {
+	public void fireEvent(IEvent event) {
+		List<IEventListener> listeners = listenerMap.get(event.getEventCode());
 		for (IEventListener listener : listeners) {
 			listener.handleEvent(event);
 		}
+		
 	}
 	
 	
