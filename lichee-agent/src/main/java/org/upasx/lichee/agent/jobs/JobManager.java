@@ -15,11 +15,13 @@ import org.quartz.Scheduler;
 import org.quartz.SchedulerException;
 import org.quartz.Trigger;
 import org.quartz.impl.StdSchedulerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.upasx.lichee.LicheeException;
 import org.upasx.lichee.agent.AgentContext;
 import org.upasx.lichee.agent.JobConfigsProperties;
+import org.upasx.lichee.command.CommandBuilder;
 import org.upasx.lichee.model.MonitorItemConfig;
 
 /**
@@ -33,6 +35,8 @@ public class JobManager {
 
 	@Value("${scripts.home.dir}")
 	private String scriptHomeDir;
+	@Autowired
+	private CommandBuilder commandBuilder;
 
 	public JobManager() {
 		try {
@@ -52,6 +56,7 @@ public class JobManager {
 			JobDataMap newJobDataMap = new JobDataMap();
 			newJobDataMap.put("config", config);
 			newJobDataMap.put("context", context);
+			newJobDataMap.put("commandBuilder", commandBuilder);
 			newJobDataMap.put("script.home.dir", scriptHomeDir);
 			JobDetail job = newJob(cls)
 					.withIdentity("job-" + config.monitorItemName,

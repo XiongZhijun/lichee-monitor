@@ -9,6 +9,7 @@ import org.quartz.JobDataMap;
 import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;
 import org.upasx.lichee.agent.AgentContext;
+import org.upasx.lichee.command.CommandBuilder;
 import org.upasx.lichee.model.MonitorItemConfig;
 
 /**
@@ -23,12 +24,13 @@ public abstract class JobSupport implements Job {
 		JobDataMap jobDataMap = context.getMergedJobDataMap();
 		MonitorItemConfig config = (MonitorItemConfig) jobDataMap.get("config");
 		AgentContext agentContext = (AgentContext) jobDataMap.get("context");
-		String scriptHomeDir = (String) jobDataMap.get("script.home.dir");
-		execute(context, agentContext, config, scriptHomeDir);
+		CommandBuilder commandBuilder = (CommandBuilder) jobDataMap
+				.get("commandBuilder");
+		execute(context, agentContext, config, commandBuilder);
 	}
 
 	protected abstract void execute(JobExecutionContext context,
 			AgentContext agentContext, MonitorItemConfig config,
-			String scriptHomeDir);
+			CommandBuilder commandBuilder);
 
 }

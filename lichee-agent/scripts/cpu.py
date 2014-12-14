@@ -1,5 +1,3 @@
-#!/usr/bin/python3
-
 import psutil
 import json
 cpu_percent = psutil.cpu_times_percent(interval=1, percpu=False)

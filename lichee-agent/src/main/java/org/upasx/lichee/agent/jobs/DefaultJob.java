@@ -6,6 +6,7 @@ package org.upasx.lichee.agent.jobs;
 
 import org.quartz.JobExecutionContext;
 import org.upasx.lichee.agent.AgentContext;
+import org.upasx.lichee.command.CommandBuilder;
 import org.upasx.lichee.model.MonitorItemConfig;
 import org.upasx.lichee.utils.CommandUtils;
 import org.upasx.lichee.utils.PathUtils;
@@ -20,15 +21,12 @@ public class DefaultJob extends JobSupport {
 	@Override
 	protected void execute(JobExecutionContext context,
 			AgentContext agentContext, MonitorItemConfig config,
-			String scriptHomeDir) {
-		StringBuilder cmd = new StringBuilder(scriptHomeDir);
-		if (!cmd.toString().endsWith("/")) {
-			cmd.append("/");
-		}
-		cmd.append(config.command);
-		String result = CommandUtils.execute(cmd.toString());
+			CommandBuilder commandBuilder) {
+		String cmd = commandBuilder.buildCommand(config.command);
+		String result = CommandUtils.execute(cmd);
 		LicheeZooKeeper zooKeeperHelper = agentContext.getZooKeeperHelper();
 		zooKeeperHelper.setData(PathUtils.join(agentContext.getHostPath(),
 				config.monitorItemName, "datas"), result);
+		System.out.println(result);
 	}
 }

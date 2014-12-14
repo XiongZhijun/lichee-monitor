@@ -1,5 +1,3 @@
-#!/usr/bin/python3
-
 import psutil
 import json
 import urllib
