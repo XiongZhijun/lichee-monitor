@@ -1,0 +1,8 @@
+1. build
+mvn package
+
+2. copy lib to dist
+
+3. startup zk
+
+4. startup app

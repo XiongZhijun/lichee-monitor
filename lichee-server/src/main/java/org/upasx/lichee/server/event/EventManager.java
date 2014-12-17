@@ -40,6 +40,7 @@ public class EventManager {
 			listeners = new ArrayList<IEventListener>();
 		}
 		listeners.add(listener);
+		listenerMap.put(eventCode, listeners);
 	}
 	
 	public void fireEvent(IEvent event) {
